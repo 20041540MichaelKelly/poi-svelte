@@ -3,9 +3,16 @@
     const poiService = getContext("PoiService");
 
     let poiList;
+    let u;
+
     onMount(async () => {
-        poiList = await poiService.getPois()
+        poiList = await poiService.getPois();
+
+
     })
+
+
+
 </script>
 <div class="uk-margin uk-width-5xlarge uk-margin-auto uk-card uk-card-default uk-card-body uk-box-shadow-large">
     <table class="uk-table uk-table-striped">
@@ -31,7 +38,7 @@
                     <td>{poi.weather}</td>
                     <td><img src="{poi.imagefile}"></td>
                     <td>{poi.categories}</td>
-                    <td>{poi.firstName}</td>
+                    <td>{u}</td>
                 </tr>
             {/each}
         {/if}
