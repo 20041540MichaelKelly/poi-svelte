@@ -4,7 +4,7 @@
 </script>
 
 <div class="uk-flex uk-flex-center uk-flex-middle uk-text-center uk-grid-small" uk-grid>
-    <Title title="Donations" subTitle="Select Donations or Candidates" />
+    <Title title="POI" subTitle="Select Poi or Users" />
     <div>
         <ul class="uk-iconnav uk-margin-left uk-margin-right">
             {#each $navBar.bar as nav}

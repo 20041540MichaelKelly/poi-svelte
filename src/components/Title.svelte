@@ -1,9 +1,10 @@
 <script>
+    import {title, subTitle, user} from "../stores.js"
     import sign_post from "/src/assets/sign_post.jpg"
-    import {title, subTitle} from "../stores.js"
+
 </script>
 
-<div class="uk-width-2-3@m  uk-card uk-card-default uk-padding-small uk-visible@m">
+<div class="uk-width-1-2@m  uk-card uk-card-default uk-padding-small uk-visible@m">
     <div class="uk-grid">
         <div class="uk-width-1-6@m">
             <a href="/"> <img src="{sign_post}" width="60" alt="img"/> </a>
@@ -22,7 +23,7 @@
                     <i class="fas fa-donate fa-3x" style="color:rgb(95, 96, 173)" title="Source repo" pos="bottom" uk-tooltip></i>
                 </div>
                 <div class="uk-width-expand@m uk-text-left">
-                    <div class="uk-text-muted uk-text-center" style="font-size:xx-small">POI 0.1</div>
+                    <div class="uk-text-muted uk-text-center" style="font-size:xx-small">{$user.email} </div>
                 </div>
             </a>
         </div>

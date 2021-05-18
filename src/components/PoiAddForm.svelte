@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { push } from "svelte-spa-router";
     import { onMount, getContext } from "svelte";
     const poiService = getContext("PoiService");
 
@@ -16,8 +17,9 @@
     });
 
     async function poiAdd() {
-        const success = await poiService.poiAdd(name, description, location, imagefile, categories)
+        const success = await poiService.makePoi(name, description, location, imagefile, categories[selectedMethod]);
         if (success) {
+            push("/poi");
 
         } else {
             errorMessage = "POI not completed - some error occurred";
@@ -42,7 +44,7 @@
             <div class="uk-margin">
                 <div class="uk-form-label" for="form-stacked-text">Location</div>
                 <div class="uk-form-controls">
-                    <input bind:value={location} id="form-stacked-text" type="text" name="location" placeholder="Location..." />
+                    <input bind:value={location} class="uk-input" id="form-stacked-text" type="text" name="location" placeholder="Location..." />
                 </div>
             </div>
             <div class="uk-margin">
@@ -60,9 +62,14 @@
                     <label><input bind:group={selectedMethod} value={3} class="uk-radio" type="radio" name="categories"> {categories[3]} </label>
                 </div>
             </div>
-        </div>
             <div class="uk-margin">
-                <button class="submit uk-button uk-button-primary uk-button-large uk-width-1-1">Add</button>
+                <button class="submit uk-button uk-button-primary uk-button-large uk-width-1-1">Donate</button>
             </div>
+            {#if errorMessage}
+                <div class="uk-text-left uk-text-small">
+                    {errorMessage}
+                </div>
+            {/if}
         </div>
+    </div>
 </form>

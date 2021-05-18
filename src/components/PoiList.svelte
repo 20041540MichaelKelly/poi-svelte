@@ -8,9 +8,7 @@
     onMount(async () => {
         poiList = await poiService.getPois();
 
-
     })
-
 
 
 </script>
@@ -38,7 +36,7 @@
                     <td>{poi.weather}</td>
                     <td><img src="{poi.imagefile}"></td>
                     <td>{poi.categories}</td>
-                    <td>{u}</td>
+                    <td>{poi.person.firstName}</td>
                 </tr>
             {/each}
         {/if}

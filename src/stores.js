@@ -8,16 +8,29 @@ export const mainBar = [
         link: "/#/poiadd",
     },
     {
-    title: "Poi",
-    icon: "fas fa-hand-holding-usd fa-3x",
-    colour: "color:rgb(153, 196, 74)",
-    link: "/#/poi",
-}, {
-    title: "Users",
-    icon: "fas fa-clipboard-list fa-3x",
-    colour: "color:rgb(63, 122, 139)",
-    link: "/#/users",
-},
+        title: "Poi",
+        icon: "fas fa-hand-holding-usd fa-3x",
+        colour: "color:rgb(153, 196, 74)",
+        link: "/#/poi",
+    },
+    {
+        title: "Analysis",
+        icon: "fas fa-chart-line fa-3x",
+        colour: "color:rgb(149, 93, 176)",
+        link: "/#/analysis",
+    },
+    {
+        title: "Users",
+        icon: "fas fa-clipboard-list fa-3x",
+        colour: "color:rgb(63, 122, 139)",
+        link: "/#/users",
+    },
+    {
+        title: "UpdateSettings",
+        icon: "fas fa-clipboard-list fa-3x",
+        colour: "color:rgb(63, 122, 139)",
+        link: "/#/updatesettings",
+    },
     {
         title: "Logout",
         icon: "fas fa-sign-out-alt fa-3x",
@@ -46,3 +59,8 @@ export const navBar = writable({
 });
 export const title = writable("");
 export const subTitle = writable("");
+
+export const user = writable({
+    email: "",
+    token: ""
+});
