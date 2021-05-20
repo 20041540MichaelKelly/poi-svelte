@@ -3,6 +3,9 @@
     import {navBar, mainBar, subTitle, title} from "../stores"
     import PoiAddForm from "../components/PoiAddForm.svelte";
 
+    let lat = 52.160858;
+    let lng = -7.152420;
+
     title.set("POI Inc.");
     subTitle.set("Add a POI!");
     navBar.set({
@@ -18,7 +21,7 @@
     </div>
     <div class="uk-width-1-2@m ">
         <div class="uk-card uk-card-default uk-card-body uk-box-shadow-large uk-width-2xlarge ">
-            <PoiAddForm/>
+            <PoiAddForm bind:lat={lat} bind:lng={lng} />
         </div>
     </div>
 </div>

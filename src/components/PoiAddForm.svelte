@@ -2,7 +2,14 @@
     import { push } from "svelte-spa-router";
     import { onMount, getContext } from "svelte";
     const poiService = getContext("PoiService");
+    import StarRating from 'svelte-star-rating';
+    import Coordinates from "./Coordinates.svelte";
 
+    export let lat = 0.0;
+    export let lng = 0.0;
+
+
+    let files = [];
     let poiList = [];
     let name = "";
     let description = "";
@@ -16,15 +23,27 @@
         poiList = await poiService.getPois()
     });
 
-    async function poiAdd() {
-        const success = await poiService.makePoi(name, description, location, imagefile, categories[selectedMethod]);
-        if (success) {
-            push("/poi");
+        async function poiAdd() {
+            if (files) {
+            console.log(files);
+            let ifile = files[0];
+            console.log(ifile);
+            if (ifile) {
+                let reader = new FileReader();
+                reader.onload = async function (e) {
+                    imagefile = reader.result;
+                    let success = await poiService.makePoi(name, description, location, imagefile, categories[selectedMethod]);
+                };
+                reader.readAsDataURL(ifile);
+            }
 
-        } else {
-            errorMessage = "POI not completed - some error occurred";
+            for (const file of files) {
+                console.log(`${file.name}: ${file.size} bytes`);
+            }
         }
     }
+
+
 </script>
 <form on:submit|preventDefault={poiAdd} class="uk-form-stacked uk-text-left">
     <div class="uk-grid uk-grid-stack">
@@ -50,7 +69,7 @@
             <div class="uk-margin">
                 <label class="uk-form-label" for="form-horizontal-text">Select Image</label>
                 <div class="uk-form-controls">
-                    <input bind:value={imagefile} type="file" class="uk-input" name="imagefile" accept="image/png, image/jpeg">
+                    <input accept="image/png, image/jpeg" bind:files type="file" class="uk-input" name="imagefile">
                 </div>
             </div>
             <div class="uk-margin">
@@ -63,7 +82,7 @@
                 </div>
             </div>
             <div class="uk-margin">
-                <button class="submit uk-button uk-button-primary uk-button-large uk-width-1-1">Donate</button>
+                <button class="submit uk-button uk-button-primary uk-button-large uk-width-1-1">ADD</button>
             </div>
             {#if errorMessage}
                 <div class="uk-text-left uk-text-small">
@@ -72,4 +91,6 @@
             {/if}
         </div>
     </div>
+    export let lat = 0.0;
+    export let lng = 0.0;
 </form>

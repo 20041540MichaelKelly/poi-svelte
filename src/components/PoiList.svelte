@@ -1,6 +1,7 @@
 <script>
     import {onMount, getContext} from 'svelte'
     const poiService = getContext("PoiService");
+    import StarRating from 'svelte-star-rating';
 
     let poiList;
     let u;
@@ -25,6 +26,8 @@
         <th>Image</th>
         <th>Category</th>
         <th>Created By</th>
+        <th>Edited By</th>
+        <th>Rating</th>
         </thead>
         <tbody class="uk-text-left">
         {#if poiList}
@@ -37,6 +40,8 @@
                     <td><img src="{poi.imagefile}"></td>
                     <td>{poi.categories}</td>
                     <td>{poi.person.firstName}</td>
+                    <td></td>
+                    <td><star-rating></star-rating></td>
                 </tr>
             {/each}
         {/if}
