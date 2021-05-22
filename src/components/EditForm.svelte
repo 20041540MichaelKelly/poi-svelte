@@ -4,6 +4,7 @@
     const poiService = getContext("PoiService");
     import StarRating from 'svelte-star-rating';
     import Coordinates from "./Coordinates.svelte";
+    import {poi} from "../stores";
 
     export let lat = 0.0;
     export let lng = 0.0;
@@ -12,10 +13,11 @@
 
     let files = [];
     let poiList = [];
-    let name = "";
-    let description = "";
-    let location = "";
-    let imagefile = "";
+    let id = $poi.id;
+    let name = $poi.name;
+    let description = $poi.description;
+    let location = $poi.location;
+    let imagefile = $poi.imagefile;
     let categories = ["North", "East", "South", "West"];
     let selectedMethod = 0;
     let errorMessage = "";
@@ -27,8 +29,8 @@
 
 
 
-        async function poiAdd() {
-            if (files) {
+    async function poiAdd() {
+        if (files) {
             console.log(files);
             let ifile = files[0];
             console.log(ifile);
@@ -36,19 +38,8 @@
                 let reader = new FileReader();
                 reader.onload = async function (e) {
                     imagefile = reader.result;
-                    const success = await poiService.makePoi(name, description, imagefile, categories[selectedMethod],
-                            {
-                                lat: lat,
-                                lng: lng
-                            }
-                            );
-                    if (success) {
-                        if (justAddedPoi) {
-                            console.log("hi");
-                            justAddedPoi(name, description);
-                        }
-
-                    }
+                    const success = await poiService.editPoi(name, description, location, imagefile, categories[selectedMethod], id );
+                    console.log(success);
                 };
                 reader.readAsDataURL(ifile);
             }
@@ -93,7 +84,7 @@
                 </div>
             </div>
             <div class="uk-margin">
-                <button class="submit uk-button uk-button-primary uk-button-large uk-width-1-1">ADD</button>
+                <button class="submit uk-button uk-button-primary uk-button-large uk-width-1-1">UPDATE</button>
             </div>
             {#if errorMessage}
                 <div class="uk-text-left uk-text-small">
@@ -102,5 +93,5 @@
             {/if}
         </div>
     </div>
-    <Coordinates bind:lat={lat} bind:lng={lng}/>
+    <Coordinates bind:lat={lat} bind:lng={lng} />
 </form>

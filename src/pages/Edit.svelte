@@ -5,6 +5,7 @@
     import PoiAddForm from "../components/PoiAddForm.svelte";
     import 'leaflet/dist/leaflet.css';
     import {LeafletMap} from "../services/leaflet-map";
+    import EditForm from "../components/EditForm.svelte";
 
     let lat = 52.160858;
     let lng = -7.152420;
@@ -18,7 +19,7 @@
         };
         map = new LeafletMap("poi-map", mapConfig, 'Terrain');
         map.showZoomControl();
-       // map.addMarker({lat: lat, lng: lng});
+        // map.addMarker({lat: lat, lng: lng});
     });
 
     title.set("POI Inc.");
@@ -44,7 +45,7 @@
     </div>
     <div class="uk-width-1-2@m ">
         <div class="uk-card uk-card-default uk-card-body uk-box-shadow-large uk-width-2xlarge ">
-            <PoiAddForm {justAddedPoi} bind:lat={lat} bind:lng={lng} />
+            <EditForm bind:lat={lat} bind:lng={lng} />
         </div>
     </div>
 </div>
