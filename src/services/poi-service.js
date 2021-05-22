@@ -96,9 +96,11 @@ export class PoiService {
             const response = await axios.post(`${this.baseUrl}/api/users/authenticate`, {email, password});
             if (response.data.success) {
                 axios.defaults.headers.common["Authorization"] = "Bearer " + response.data.token;
+                console.log(response.data);
                 user.set({
                     email: email,
-                    token: response.data.token
+                    token: response.data.token,
+                    id: response.data._id
                 });
                 localStorage.poi = JSON.stringify(response.data.token);
                 return true;
@@ -109,15 +111,14 @@ export class PoiService {
         }
     }
 
-    async makePoi(name, description, location, imagefile, categories) {
+    async makePoi(name, description, imagefile, categories, location) {
         try {
             const poiAdd = {
                 name: name,
                 description: description,
-                location: location,
-                //weather: weathers.weather[0].description,
                 imagefile: imagefile,
                 categories: categories,
+                location: location,
             };
             const response = await axios.post(this.baseUrl + "/api/poi", poiAdd);
             console.log(response);
@@ -126,4 +127,44 @@ export class PoiService {
             return false;
         }
     }
+
+    async getPoi(id) {
+        try {
+            const response = await axios.get(this.baseUrl + "/api/users/" + id + "/poi");
+            return response.data;
+        } catch (error) {
+            return false;
+        }
+    }
+
+    async editPoi(name, description, location, imagefile, categories, id) {
+        try {
+            const poiDetails = {
+                name: firstName,
+                description: lastName,
+                location: location,
+                imagefile: imagefile,
+                categories: categories,
+                _id: id
+            };
+            console.log(poiDetails);
+            const response = await axios.put(`${this.baseUrl}/api/poi/${id}`, poiDetails);
+            const newPoi = await response.data;
+            user.set(newPoi);
+            return true;
+        } catch (error) {
+            return false;
+        }
+    }
+
+    async deletePoi(id) {
+        const response = await axios.delete(this.baseUrl + "/api/poi/deletePoi", id);
+        console.log(response);
+        console.log('passed');
+        return response.status === 200;
+    } catch (error) {
+        return false;
+    }
+
+
 }

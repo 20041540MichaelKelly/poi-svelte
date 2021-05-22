@@ -6,7 +6,9 @@
   import Analysis from "./pages/Analysis.svelte";
   import Poi from "./pages/Poi.svelte";
   import Users from "./pages/Users.svelte";
+  import Map from "./pages/map.svelte";
   import Login from "./pages/Login.svelte";
+  import Edit from "./pages/Edit.svelte";
   import UpdateSettings from "./pages/UpdateSettings.svelte";
   import Navigator from "./components/Navigator.svelte";
   import Router from "svelte-spa-router";
@@ -22,8 +24,10 @@
     "/analysis": Analysis,
     "/users": Users,
     "/poiadd": PoiAdd,
+    "/map": Map,
     "/updatesettings": UpdateSettings,
-    "/logout" : Main
+    "/logout" : Main,
+    "/edit" : Edit
   }
 </script>
 

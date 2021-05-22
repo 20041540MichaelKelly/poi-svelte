@@ -18,9 +18,9 @@
             </div>
         </div>
         <div class="uk-card uk-card-small uk-text-center uk-padding-remove">
-            <a target="_blank" href="https://github.com/wit-hdip-comp-sci-2020/donation-svelte">
+            <a target="_blank" href="https:////github.com/20041540MichaelKelly/poi-svelte">
                 <div>
-                    <i class="fas fa-donate fa-3x" style="color:rgb(95, 96, 173)" title="Source repo" pos="bottom" uk-tooltip></i>
+                    <i class="fas fa-map-signs fa-3x" style="color:rgb(95, 96, 173)" title="Source repo" pos="bottom" uk-tooltip></i>
                 </div>
                 <div class="uk-width-expand@m uk-text-left">
                     <div class="uk-text-muted uk-text-center" style="font-size:xx-small">{$user.email} </div>
