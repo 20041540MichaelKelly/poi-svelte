@@ -3,7 +3,7 @@
     import usersImg from "/src/assets/users.jpg";
     import {navBar, mainBar, subTitle, title} from "../stores"
 
-    title.set("Poi Services Inc.");
+    title.set("Poi Services Inc..");
     subTitle.set("Latest Users");
     navBar.set({
         bar: mainBar
