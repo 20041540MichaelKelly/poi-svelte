@@ -1,5 +1,6 @@
 import axios from "axios";
 import {user} from "../stores";
+import {poi} from "../stores";
 
 export class PoiService {
     poiList = [];
@@ -52,8 +53,7 @@ export class PoiService {
                 firstName: firstName,
                 lastName: lastName,
                 email: email,
-                password: password,
-                _id: id
+                password: password
             };
             console.log(userDetails);
             const response = await axios.put(`${this.baseUrl}/api/users/${id}`, userDetails);
@@ -100,7 +100,6 @@ export class PoiService {
                 user.set({
                     email: email,
                     token: response.data.token,
-                    id: response.data._id
                 });
                 localStorage.poi = JSON.stringify(response.data.token);
                 return true;
@@ -130,7 +129,7 @@ export class PoiService {
 
     async getPoi(id) {
         try {
-            const response = await axios.get(this.baseUrl + "/api/users/" + id + "/poi");
+            const response = await axios.get(this.baseUrl + "/api/poi", id);
             return response.data;
         } catch (error) {
             return false;
@@ -140,17 +139,17 @@ export class PoiService {
     async editPoi(name, description, location, imagefile, categories, id) {
         try {
             const poiDetails = {
-                name: firstName,
-                description: lastName,
+                name: name,
+                description: description,
                 location: location,
                 imagefile: imagefile,
                 categories: categories,
                 _id: id
             };
             console.log(poiDetails);
-            const response = await axios.put(`${this.baseUrl}/api/poi/${id}`, poiDetails);
+            const response = await axios.put(`${this.baseUrl}/api/poi`, poiDetails);
             const newPoi = await response.data;
-            user.set(newPoi);
+            poi.set(newPoi);
             return true;
         } catch (error) {
             return false;
@@ -158,9 +157,10 @@ export class PoiService {
     }
 
     async deletePoi(id) {
-        const response = await axios.delete(this.baseUrl + "/api/poi/deletePoi", id);
+        const response = await axios.delete(this.baseUrl + "/api/poi/deleteOne/" + id);
         console.log(response);
         console.log('passed');
+        window.location.reload();
         return response.status === 200;
     } catch (error) {
         return false;

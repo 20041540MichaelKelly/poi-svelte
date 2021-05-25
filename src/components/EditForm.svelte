@@ -5,16 +5,16 @@
     import StarRating from 'svelte-star-rating';
     import Coordinates from "./Coordinates.svelte";
     import {poi} from "../stores";
+    export let pId;
 
     export let lat = 0.0;
     export let lng = 0.0;
-    export let justAddedPoi;
-
 
     let files = [];
     let poiList = [];
-    let id = $poi.id;
+    let Id = pId;
     let name = $poi.name;
+    console.log(name);
     let description = $poi.description;
     let location = $poi.location;
     let imagefile = $poi.imagefile;
@@ -29,7 +29,7 @@
 
 
 
-    async function poiAdd() {
+    async function editPoi() {
         if (files) {
             console.log(files);
             let ifile = files[0];
@@ -38,7 +38,7 @@
                 let reader = new FileReader();
                 reader.onload = async function (e) {
                     imagefile = reader.result;
-                    const success = await poiService.editPoi(name, description, location, imagefile, categories[selectedMethod], id );
+                    const success = await poiService.editPoi(name, description, location, imagefile, categories[selectedMethod], Id );
                     console.log(success);
                 };
                 reader.readAsDataURL(ifile);
@@ -53,7 +53,7 @@
 
 
 </script>
-<form on:submit|preventDefault={poiAdd} class="uk-form-stacked uk-text-left">
+<form on:submit|preventDefault={editPoi} class="uk-form-stacked uk-text-left">
     <div class="uk-grid uk-grid-stack">
         <div class="uk-width-1-2@m">
             <div class="uk-margin">
