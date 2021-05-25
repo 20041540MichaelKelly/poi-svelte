@@ -1,8 +1,13 @@
-<script>
+<script
+>
     import {onMount, getContext} from 'svelte'
+
     const poiService = getContext("PoiService");
     import StarRating from 'svelte-star-rating';
     import {push} from "svelte-spa-router";
+    import EditForm from "./EditForm.svelte";
+    import PoiList from "./PoiList.svelte";
+    import PoiInfo from "./PoiInfo.svelte";
 
     let poiList = [];
     let u;
@@ -17,6 +22,18 @@
         push("/edit");
 
     }
+
+    async function poiPage(poi) {
+        console.log(poi);
+        const sucess = await poiService.deletePoi(poi._id);
+        if (sucess){
+            console.log('yo');
+        }
+
+        //push("/poiinfo");
+
+    }
+
 
 </script>
 <div class="uk-margin uk-width-5xlarge uk-margin-auto uk-card uk-card-default uk-card-body uk-box-shadow-large">
@@ -51,7 +68,14 @@
                     <td>
                         <form on:submit|preventDefault={edit}>
                             <div class="uk-margin">
-                                <button class="uk-button uk-button-primary uk-button-large uk-width-1-1">Login</button>
+                                <button class="uk-button uk-button-primary"><i class="fas fa-edit"></i></button>
+                            </div>
+                        </form>
+                    </td>
+                    <td>
+                        <form on:submit|preventDefault={poiPage(poi)}>
+                            <div class="uk-margin">
+                                <button class="uk-button uk-button-danger"><i class="fas fa-trash-alt"></i>
                             </div>
                         </form>
                     </td>

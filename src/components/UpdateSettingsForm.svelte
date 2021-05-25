@@ -6,13 +6,15 @@
     let lastName = $user.lastName;
     let email = $user.email;
     let password = $user.password;
-    let idid = $user._id;
+
     let message = "";
 
     const poiService = getContext("PoiService");
 
     async function save() {
-        let success = await poiService.updateSettings(firstName, lastName, email, password, idid);
+
+        let success = await poiService.updateSettings(firstName, lastName, email, password, $user._id)
+        console.log($user.id);
         if (success) {
             message = "Settings updated";
         } else {

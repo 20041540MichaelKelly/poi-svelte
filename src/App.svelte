@@ -9,6 +9,7 @@
   import Map from "./pages/map.svelte";
   import Login from "./pages/Login.svelte";
   import Edit from "./pages/Edit.svelte";
+  import PoiInfo from "./components/PoiInfo.svelte";
   import UpdateSettings from "./pages/UpdateSettings.svelte";
   import Navigator from "./components/Navigator.svelte";
   import Router from "svelte-spa-router";
@@ -27,7 +28,8 @@
     "/map": Map,
     "/updatesettings": UpdateSettings,
     "/logout" : Main,
-    "/edit" : Edit
+    "/edit" : Edit,
+    "/poiinfo" : PoiInfo
   }
 </script>
 
