@@ -8,6 +8,7 @@
     import EditForm from "./EditForm.svelte";
     import PoiList from "./PoiList.svelte";
     import PoiInfo from "./PoiInfo.svelte";
+    import { place } from "../stores";
 
     let poiList = [];
     let u;
@@ -18,12 +19,18 @@
 
     });
 
-    async function edit() {
-        push("/edit");
+    async function edit(poi) {
+
+     // place.name = poi.name;
+
+      console.log(place);
+
+          // push("/edit");
+
 
     }
 
-    async function poiPage(poi) {
+    async function deletePoi(poi) {
         console.log(poi);
         const sucess = await poiService.deletePoi(poi._id);
         if (sucess){
@@ -32,6 +39,15 @@
 
         //push("/poiinfo");
 
+    }
+
+    async function poiPage(poi) {
+        place.set({_id: poi._id,
+        description : poi.description,
+        name: poi.name,
+        location: poi.location,
+        imagefile: poi.imagefile});
+        push("/poiinfo");
     }
 
 
@@ -66,16 +82,23 @@
                     <td></td>
                     <td><StarRating rating={3.35} /></td>
                     <td>
-                        <form on:submit|preventDefault={edit}>
+                        <form on:submit|preventDefault={edit(poi)}>
                             <div class="uk-margin">
-                                <button class="uk-button uk-button-primary"><i class="fas fa-edit"></i></button>
+                                <button class="uk-button uk-button-link"><i class="fas fa-edit"></i></button>
+                            </div>
+                        </form>
+                    </td>
+                    <td>
+                        <form on:submit|preventDefault={deletePoi(poi)}>
+                            <div class="uk-margin">
+                                <button class="uk-button uk-button-link"><i class="fas fa-trash-alt"></i></button>
                             </div>
                         </form>
                     </td>
                     <td>
                         <form on:submit|preventDefault={poiPage(poi)}>
                             <div class="uk-margin">
-                                <button class="uk-button uk-button-danger"><i class="fas fa-trash-alt"></i>
+                                <button class="uk-button uk-button-link"><i class="fas fa-chevron-circle-right"></i></button>
                             </div>
                         </form>
                     </td>

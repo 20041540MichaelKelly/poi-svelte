@@ -1,6 +1,6 @@
 import axios from "axios";
 import {user} from "../stores";
-import {poi} from "../stores";
+import { place } from "../stores";
 
 export class PoiService {
     poiList = [];
@@ -124,6 +124,22 @@ export class PoiService {
             return response.status === 200;
         } catch (error) {
             return false;
+        }
+    }
+
+    async setPoi(poi) {
+        console.log(poi._id);
+        let ans = place.set({
+            _id: poi._id,
+            description: poi.description,
+            location: poi.location,
+            imagefile: poi.imagefile,
+            categories: poi.categories,
+            person: poi.person,
+        });
+        console.log(ans);
+        if (ans) {
+            console.log(ans);
         }
     }
 

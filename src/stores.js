@@ -71,11 +71,12 @@ export const user = writable({
     token: ""
 });
 
-export const poi = writable({
-    id: "",
+export const place = writable({
+    _id: "",
     name: "",
     description: "",
     location: "",
     imagefile: "",
-    categories: ""
+    categories: "",
+    person: ""
 });

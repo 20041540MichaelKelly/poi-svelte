@@ -28,7 +28,7 @@
         bar: mainBar
     });
 
-    function justAddedPoi(name, description) {
+    function editThePoi(name, description) {
         const poiStr = `${name} ${description}`;
         map.addMarker({lat: lat, lng: lng}, poiStr);
         map.moveTo(12, {lat: lat, lng: lng});
