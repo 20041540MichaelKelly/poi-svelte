@@ -27,8 +27,6 @@
     });
 
 
-
-
     async function editPoi() {
         if (files) {
             console.log(files);
@@ -49,6 +47,7 @@
             }
         }
     }
+
 
 
 
