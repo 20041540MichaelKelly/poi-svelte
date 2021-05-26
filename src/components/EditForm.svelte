@@ -4,7 +4,7 @@
     const poiService = getContext("PoiService");
     import StarRating from 'svelte-star-rating';
     import Coordinates from "./Coordinates.svelte";
-    import {poi} from "../stores";
+    import {place} from "../stores";
     export let pId;
 
     export let lat = 0.0;
@@ -21,6 +21,9 @@
     let categories = ["North", "East", "South", "West"];
     let selectedMethod = 0;
     let errorMessage = "";
+
+    let poi_value;
+
 
     onMount(async () => {
         poiList = await poiService.getPois()
@@ -56,7 +59,7 @@
     <div class="uk-grid uk-grid-stack">
         <div class="uk-width-1-2@m">
             <div class="uk-margin">
-                <label class="uk-form-label" for="form-stacked-text">Enter Name</label>
+                <label class="uk-form-label" for="form-stacked-text">{name}</label>
                 <div class="uk-form-controls">
                     <input bind:value={name} class="uk-input" id="form-stacked-text" type="text" name="name" placeholder="Name...">
                 </div>

@@ -8,9 +8,11 @@
     import EditForm from "./EditForm.svelte";
     import PoiList from "./PoiList.svelte";
     import PoiInfo from "./PoiInfo.svelte";
+    import { place } from "../stores";
 
     let poiList = [];
     let u;
+
 
 
     onMount(async () => {
@@ -18,12 +20,18 @@
 
     });
 
-    async function edit() {
-        push("/edit");
+    async function edit(poi) {
+
+     // place.name = poi.name;
+
+      console.log(place);
+
+          // push("/edit");
+
 
     }
 
-    async function poiPage(poi) {
+    async function deletePoi(poi) {
         console.log(poi);
         const sucess = await poiService.deletePoi(poi._id);
         if (sucess){
@@ -32,6 +40,17 @@
 
         //push("/poiinfo");
 
+    }
+
+    async function poiPage(poi) {
+        place.set({_id: poi._id,
+        description : poi.description,
+        name: poi.name,
+        location: poi.location,
+        rate: poi.rate,
+        imagefile: poi.imagefile,
+        person: poi.person});
+        push("/poiinfo");
     }
 
 
@@ -43,10 +62,7 @@
         </caption>
         <thead>
         <th>Name</th>
-        <th>Description</th>
-        <th>Location</th>
         <th>Weather</th>
-        <th>Image</th>
         <th>Category</th>
         <th>Created By</th>
         <th>Edited By</th>
@@ -57,25 +73,29 @@
             {#each poiList as poi}
                 <tr>
                     <td>{poi.name}</td>
-                    <td>{poi.description}</td>
-                    <td>{poi.location.lat} {poi.location.lng}</td>
                     <td>{poi.weather}</td>
-                    <td><img src="{poi.imagefile}"></td>
                     <td>{poi.categories}</td>
                     <td>{poi.person.firstName} {poi.person.lastName}</td>
                     <td></td>
-                    <td><StarRating rating={3.35} /></td>
+                    <td> <StarRating rating={poi.rate} /></td>
                     <td>
-                        <form on:submit|preventDefault={edit}>
+                        <form on:submit|preventDefault={edit(poi)}>
                             <div class="uk-margin">
-                                <button class="uk-button uk-button-primary"><i class="fas fa-edit"></i></button>
+                                <button class="uk-button uk-button-link"><i class="fas fa-edit"></i></button>
+                            </div>
+                        </form>
+                    </td>
+                    <td>
+                        <form on:submit|preventDefault={deletePoi(poi)}>
+                            <div class="uk-margin">
+                                <button class="uk-button uk-button-link"><i class="fas fa-trash-alt"></i></button>
                             </div>
                         </form>
                     </td>
                     <td>
                         <form on:submit|preventDefault={poiPage(poi)}>
                             <div class="uk-margin">
-                                <button class="uk-button uk-button-danger"><i class="fas fa-trash-alt"></i>
+                                <button class="uk-button uk-button-link"><i class="fas fa-chevron-circle-right"></i></button>
                             </div>
                         </form>
                     </td>

@@ -1,6 +1,6 @@
 import axios from "axios";
 import {user} from "../stores";
-import {poi} from "../stores";
+import { place } from "../stores";
 
 export class PoiService {
     poiList = [];
@@ -110,13 +110,14 @@ export class PoiService {
         }
     }
 
-    async makePoi(name, description, imagefile, categories, location) {
+    async makePoi(name, description, imagefile, categories, rate, location) {
         try {
             const poiAdd = {
                 name: name,
                 description: description,
                 imagefile: imagefile,
                 categories: categories,
+                rate: rate,
                 location: location,
             };
             const response = await axios.post(this.baseUrl + "/api/poi", poiAdd);
@@ -126,6 +127,7 @@ export class PoiService {
             return false;
         }
     }
+
 
     async getPoi(id) {
         try {
