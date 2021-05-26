@@ -110,13 +110,14 @@ export class PoiService {
         }
     }
 
-    async makePoi(name, description, imagefile, categories, location) {
+    async makePoi(name, description, imagefile, categories, rate, location) {
         try {
             const poiAdd = {
                 name: name,
                 description: description,
                 imagefile: imagefile,
                 categories: categories,
+                rate: rate,
                 location: location,
             };
             const response = await axios.post(this.baseUrl + "/api/poi", poiAdd);
@@ -127,21 +128,6 @@ export class PoiService {
         }
     }
 
-    async setPoi(poi) {
-        console.log(poi._id);
-        let ans = place.set({
-            _id: poi._id,
-            description: poi.description,
-            location: poi.location,
-            imagefile: poi.imagefile,
-            categories: poi.categories,
-            person: poi.person,
-        });
-        console.log(ans);
-        if (ans) {
-            console.log(ans);
-        }
-    }
 
     async getPoi(id) {
         try {

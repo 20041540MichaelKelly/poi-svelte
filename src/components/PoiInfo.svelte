@@ -4,6 +4,7 @@
     import {place} from "../stores";
     //export let description;
     let poi_value;
+    import StarRating from 'svelte-star-rating';
 
     import HackerNews from "../../node_modules/svelte-share-buttons-component/src/HackerNews.svelte";
     import Twitter from "../../node_modules/svelte-share-buttons-component/src/Twitter.svelte";
@@ -18,7 +19,7 @@
     const desc = 'Svelte based social media share buttons component with no tracking.';
 
 </script>
-<div class="uk-child-width-1-2@m" uk-grid>
+<div class="uk-child-width-1-1@m uk-grid-small uk-grid-match" uk-grid>
     <div>
         <div class="uk-card uk-card-default">
             <div class="uk-card-media-top">
@@ -27,21 +28,9 @@
             <div class="uk-card-body">
                 <h3 class="uk-card-title">{poi_value.name}</h3>
                 <p>{poi_value.description}</p>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="uk-child-width-1-2@m" uk-grid>
-    <div>
-        <div class="uk-card uk-card-default">
-            <div class="uk-card-media-top">
-                <HackerNews class="share-button" {title} {url} />
-                <Twitter class="share-button" text="{title}" {url} hashtags="github,svelte" via="username" related="other,users" />
-                <Tumblr class="share-button" {title} {url} caption="{title}" />
-            </div>
-            <div class="uk-card-body">
-                <h3 class="uk-card-title">{poi_value.name}</h3>
-                <p>{poi_value.description}</p>
+                <p>Created by: {poi_value.person.firstName},{poi_value.person.lastName}</p>
+                <p>Coordinates: {poi_value.location.lat}, {poi_value.location.lng}</p>
+                <p><StarRating rating={poi_value.rate} /></p>
             </div>
         </div>
     </div>

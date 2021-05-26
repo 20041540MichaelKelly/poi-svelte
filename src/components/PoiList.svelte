@@ -14,6 +14,7 @@
     let u;
 
 
+
     onMount(async () => {
         poiList = await poiService.getPois();
 
@@ -46,7 +47,9 @@
         description : poi.description,
         name: poi.name,
         location: poi.location,
-        imagefile: poi.imagefile});
+        rate: poi.rate,
+        imagefile: poi.imagefile,
+        person: poi.person});
         push("/poiinfo");
     }
 
@@ -59,10 +62,7 @@
         </caption>
         <thead>
         <th>Name</th>
-        <th>Description</th>
-        <th>Location</th>
         <th>Weather</th>
-        <th>Image</th>
         <th>Category</th>
         <th>Created By</th>
         <th>Edited By</th>
@@ -73,14 +73,11 @@
             {#each poiList as poi}
                 <tr>
                     <td>{poi.name}</td>
-                    <td>{poi.description}</td>
-                    <td>{poi.location.lat} {poi.location.lng}</td>
                     <td>{poi.weather}</td>
-                    <td><img src="{poi.imagefile}"></td>
                     <td>{poi.categories}</td>
                     <td>{poi.person.firstName} {poi.person.lastName}</td>
                     <td></td>
-                    <td><StarRating rating={3.35} /></td>
+                    <td> <StarRating rating={poi.rate} /></td>
                     <td>
                         <form on:submit|preventDefault={edit(poi)}>
                             <div class="uk-margin">
