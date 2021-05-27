@@ -15,8 +15,8 @@
   import Router from "svelte-spa-router";
   import Signup from "./pages/Signup.svelte";
 
-//  setContext("PoiService", new PoiService("https://poi-pro-michael.herokuapp.com"));
-  setContext("PoiService", new PoiService("http://localhost:4000"));
+  setContext("PoiService", new PoiService("https://poi-pro-michael.herokuapp.com"));
+//  setContext("PoiService", new PoiService("http://localhost:4000"));
 
   let routes = {
     "/" : Main,
