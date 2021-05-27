@@ -72,7 +72,7 @@ export const user = writable({
 });
 
 export const place = writable({
-    _id: "",
+    id: "",
     name: "",
     description: "",
     location: "",

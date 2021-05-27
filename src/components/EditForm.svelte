@@ -4,7 +4,8 @@
     const poiService = getContext("PoiService");
     import StarRating from 'svelte-star-rating';
     import Coordinates from "./Coordinates.svelte";
-    import {place} from "../stores";
+    import { place } from "../stores";
+    import { user } from "../stores";
     export let pId;
 
     export let lat = 0.0;
@@ -12,12 +13,13 @@
 
     let files = [];
     let poiList = [];
-    let Id = pId;
-    let name = $poi.name;
+    let id = $place.id;
+    let name = $place.name;
     console.log(name);
-    let description = $poi.description;
-    let location = $poi.location;
-    let imagefile = $poi.imagefile;
+    let description = $place.description;
+    let location = $place.location;
+    let imagefile = $place.imagefile;
+    let person = $user.email;
     let categories = ["North", "East", "South", "West"];
     let selectedMethod = 0;
     let errorMessage = "";
@@ -39,7 +41,7 @@
                 let reader = new FileReader();
                 reader.onload = async function (e) {
                     imagefile = reader.result;
-                    const success = await poiService.editPoi(name, description, location, imagefile, categories[selectedMethod], Id );
+                    const success = await poiService.editPoi(name, description, location, imagefile, categories[selectedMethod], person, id);
                     console.log(success);
                 };
                 reader.readAsDataURL(ifile);
@@ -61,19 +63,19 @@
             <div class="uk-margin">
                 <label class="uk-form-label" for="form-stacked-text">{name}</label>
                 <div class="uk-form-controls">
-                    <input bind:value={name} class="uk-input" id="form-stacked-text" type="text" name="name" placeholder="Name...">
+                    <input bind:value={name} class="uk-input" id="form-stacked-text" type="text" name="name" placeholder="Name..." required>
                 </div>
             </div>
             <div class="uk-margin">
                 <label class="uk-form-label" for="form-stacked-text">Description</label>
                 <div class="uk-form-controls">
-                    <input bind:value={description} class="uk-input" id="form-stacked-text" type="text" name="description" placeholder="Description..." />
+                    <input bind:value={description} class="uk-input" id="form-stacked-text" type="text" name="description" placeholder="Description..." required />
                 </div>
             </div>
             <div class="uk-margin">
                 <label class="uk-form-label" for="form-horizontal-text">Select Image</label>
                 <div class="uk-form-controls">
-                    <input accept="image/png, image/jpeg" bind:files type="file" class="uk-input" name="imagefile">
+                    <input accept="image/png, image/jpeg" bind:files type="file" class="uk-input" name="imagefile" required>
                 </div>
             </div>
             <div class="uk-margin">

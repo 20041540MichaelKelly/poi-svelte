@@ -138,7 +138,7 @@ export class PoiService {
         }
     }
 
-    async editPoi(name, description, location, imagefile, categories, id) {
+    async editPoi(name, description, location, imagefile, categories, person, id) {
         try {
             const poiDetails = {
                 name: name,
@@ -146,7 +146,8 @@ export class PoiService {
                 location: location,
                 imagefile: imagefile,
                 categories: categories,
-                _id: id
+                person: person,
+                id: id
             };
             console.log(poiDetails);
             const response = await axios.put(`${this.baseUrl}/api/poi`, poiDetails);
