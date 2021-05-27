@@ -2,13 +2,9 @@
     import island_main from "/src/assets/island_main.jpg";
     import PoiList from "./PoiList.svelte";
     import {place} from "../stores";
-    //export let description;
+
     let poi_value;
     import StarRating from 'svelte-star-rating';
-
-    import HackerNews from "../../node_modules/svelte-share-buttons-component/src/HackerNews.svelte";
-    import Twitter from "../../node_modules/svelte-share-buttons-component/src/Twitter.svelte";
-    import Tumblr from "../../node_modules/svelte-share-buttons-component/src/Tumblr.svelte";
 
     const unsubscribe = place.subscribe(value => {
         poi_value = value;
