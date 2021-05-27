@@ -3,7 +3,6 @@
     import {navBar, mainBar, subTitle, title} from "../stores"
     import {onMount} from "svelte";
     import PoiAddForm from "../components/PoiAddForm.svelte";
-  //  import 'leaflet/dist/leaflet.css';
     import {LeafletMap} from "../services/leaflet-map";
 
     let lat = 52.160858;
