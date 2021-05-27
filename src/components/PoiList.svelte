@@ -23,10 +23,15 @@
     async function edit(poi) {
 
      // place.name = poi.name;
+        place.set({id: poi._id,
+            description : poi.description,
+            name: poi.name,
+            location: poi.location,
+            rate: poi.rate,
+            imagefile: poi.imagefile,
+            person: poi.person});
 
-      console.log(place);
-
-          // push("/edit");
+           push("/edit");
 
 
     }
@@ -76,7 +81,11 @@
                     <td>{poi.weather}</td>
                     <td>{poi.categories}</td>
                     <td>{poi.person.firstName} {poi.person.lastName}</td>
+                    {#if poi.editor}
+                    <td>{poi.editor}</td>
+                    {:else}
                     <td></td>
+                    {/if}
                     <td> <StarRating rating={poi.rate} /></td>
                     <td>
                         <form on:submit|preventDefault={edit(poi)}>

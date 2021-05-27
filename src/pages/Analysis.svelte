@@ -12,6 +12,7 @@
     });
 
     let num = 0;
+    let dSets = [];
 
     let userData = {
 
@@ -44,27 +45,43 @@
             });
     }); */
 
+
+
     onMount(async () => {
         let poiList = await poiService.getPois();
         let userList = await poiService.getUsers();
         userData.labels = [];
         userData.datasets[0].values = [];
 
-        userList.forEach(user => {
+      /*  userList.forEach(user => {
            userData.labels.push(`${user.firstName}, ${user.lastName}`)
 
-        });
+        });*/
         userData.datasets[0].values = [];
-        userList.forEach((user,j ) => {
-            //userData.labels.push(`${user.firstName}, ${user.lastName}`)
-            poiList.forEach((poi,i) => {
-                if (user._id[j] == poi.person._id[i]) {
-                    if (user.email == user.email){
-                        num += 1;
-                        console.log(userData.datasets[0].values[i] = num);
-                    }
-                   // userData.labels.push(user.firstName);
+        userList.forEach((user,i ) => {
+            let num = 0;
+            userData.labels.push(`${user.firstName}, ${user.lastName}`)
+            poiList.forEach((poi, j) => {
+
+                if (poi.person._id === user._id && num++) {
+                    //console.log(num);
+                    dSets = {
+                        uses: user.firstName,
+                        num: num
+                    };
                 }
+
+                    console.log(dSets);
+              //  userData.labels.push(dSets.uses);
+                   // userData.labels[i] = dSets.uses;
+                    userData.datasets[0].values[i] = dSets.num;
+                    console.log(i);
+                   // console.log(getOccurrence(user, user._id));
+
+
+
+                   // userData.labels.push(user.firstName);
+
         });
         });
 

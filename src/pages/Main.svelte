@@ -26,8 +26,8 @@
                 Use this page to help you find the islands and islets you would most like to visit.</p>
             <p><img width="500" src="{island_main}" alt="island" /></p>
             <p> <HackerNews class="share-button" {title_share} {url} />
-                <Twitter class="share-button" text="{title}" {url} hashtags="github,svelte" via="username" related="other,users" />
-                <Tumblr class="share-button" {title_share} {url} caption="{title}" /></p>
+                <Twitter class="share-button" text="{title_share}" {url} hashtags="github,svelte" via="username" related="other,users" />
+                <Tumblr class="share-button" {title_share} {url} caption={desc} /></p>
         </div>
     </div>
 </div>
