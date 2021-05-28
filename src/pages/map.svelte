@@ -3,7 +3,18 @@
     import {LeafletMap} from '../services/leaflet-map';
     import {onMount, getContext} from "svelte";
     const poiService = getContext("PoiService");
+    import 'leaflet/dist/leaflet.css';
 
+    import icon from 'leaflet/dist/images/marker-icon.png';
+    import iconShadow from 'leaflet/dist/images/marker-shadow.png';
+    import * as L from "leaflet";
+
+    let DefaultIcon = L.icon({
+        iconUrl: icon,
+        shadowUrl: iconShadow
+    });
+
+    L.Marker.prototype.options.icon = DefaultIcon;
 
     let lat = 52.160858;
     let lng = -7.152420;
