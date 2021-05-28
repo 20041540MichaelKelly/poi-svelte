@@ -4,5 +4,11 @@ extension to the first project which now serves this project as the API. Securit
 and salting in the backend and it is Test Driven Deployment in the API git repository you can view the tests.
 There is Leaflet Maps, analytics of fraped Maps. a rating system, Lat Long. It is a Full Stack project.
 
+Front end Deployed: 
+https://poi-svelte.vercel.app/#/Map
+https://poi-pro-michael-front-end.netlify.app/
+
+API Deployed: https://poi-pro-michael.herokuapp.com/
+
 Login Details sample user mick@kelly.com, secret
                           breda@kelly.com, secret
