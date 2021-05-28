@@ -8,7 +8,7 @@
     import Twitter from "../../node_modules/svelte-share-buttons-component/src/Twitter.svelte";
     import Tumblr from "../../node_modules/svelte-share-buttons-component/src/Tumblr.svelte";
 
-    const url = 'https://elastic-fermi-658e70.netlify.app';
+    const url = 'https://poi-pro-michael-front-end.netlify.app/';
     const title_share = 'Social Media Sharing POI Assignment';
     const desc = 'Svelte based social media share buttons component with no tracking.';
 
@@ -28,7 +28,7 @@
             <p><img width="500" src="{island_main}" alt="island" /></p>
             <p> <HackerNews class="share-button" {title_share} {url} />
                 <Twitter class="share-button" text="{title_share}" {url} hashtags="github,svelte" via="username" related="other,users" />
-                <Tumblr class="share-button" {title_share} {url} caption={desc} /></p>
+                <Tumblr class="share-button" {title_share} {url} caption= {desc} /></p>
         </div>
     </div>
 </div>
